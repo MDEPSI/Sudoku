@@ -97,14 +97,12 @@ public class GrilleView extends View implements View.OnTouchListener {
                 case MotionEvent.ACTION_MOVE:
                     break;
                 case MotionEvent.ACTION_UP:
-                    value_x = x;
-                    value_y = y;
 
-                    int val_y = y/block;
-                    int val_x = x/block;
+                    value_y = y/block;
+                    value_x = x/block;
                     //                maj du string
-                    Log.e("CHAR AT", "x: "+(x/block+1)+" y: "+(y/block+1)+" num: "+number+" vx: "+val_x+" vy: "+val_y);
-                    sudoku.setCharAt(val_x+val_y*9,number);
+                    Log.e("CHAR AT", "x: "+(x/block+1)+" y: "+(y/block+1)+" num: "+number+" vx: "+value_x+" vy: "+value_y);
+                    sudoku.setCharAt(value_x+value_y*9,number);
                     break;
             }
 

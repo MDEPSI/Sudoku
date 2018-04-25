@@ -12,6 +12,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Random;
+
 /**
  * Created by Maxime on 24/04/2018.
  */
@@ -19,13 +21,13 @@ import android.widget.Toast;
 public class ListeGrilleActivity extends Activity {
 
     private String[] grilles_faciles = new String[]{
-            "1", "2", "3", "4", "5", "6",
-            "7", "8", "9", "10"
+            "Facile 1", "Facile 2", "Facile 3", "Facile 4", "Facile 5", "Facile 6",
+            "Facile 7", "Facile 8", "Facile 9", "Facile 10"
     };
 
     private String[] grilles_moyen = new String[]{
-            "11", "12", "13", "14", "15", "16",
-            "17", "18", "19", "20"
+            "Moyen 11", "Moyen 12", "Moyen 13", "Moyen 14", "Moyen 15", "Moyen 16",
+            "Moyen 17", "Moyen 18", "Moyen 19", "Moyen 20"
     };
 
     @Override
@@ -37,6 +39,14 @@ public class ListeGrilleActivity extends Activity {
         Log.e("value", ""+level.get("level"));
 
         ListView list = this.findViewById(R.id.grille);
+        for (int i =0; i<grilles_faciles.length; i++) {
+            int r = new Random().nextInt(101);
+            grilles_faciles[i] = grilles_faciles[i]+" - "+r+"%";
+        }
+        for (int i =0; i<grilles_moyen.length; i++) {
+            int r = new Random().nextInt(101);
+            grilles_moyen[i] = grilles_moyen[i]+" - "+r+"%";
+        }
 
         if (level.get("level").equals("facile")){
             final ArrayAdapter<String> adapter = new ArrayAdapter<String>(ListeGrilleActivity.this,
