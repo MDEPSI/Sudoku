@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".GrilleActivity" android:screenOrientation="portrait"> </activity>
-        <activity android:name=".ListeGrilleActivity" android:screenOrientation="portrait"> </activity>
+        <activity android:name=".ListeGrilleActivity" android:screenOrientation="portrait"></activity>
+        <!--<activity android:name=".GrilleView" android:screenOrientation="portrait"></activity>-->
+
     </application>
 
 </manifest>
