@@ -3,24 +3,9 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/grille1"
+    <ListView
+        android:id="@+id/grille"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Grille 1" />
+        android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/grille2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Grille 2" />
-
-    <Button
-        android:id="@+id/grille3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Grille 3" />
 </LinearLayout>

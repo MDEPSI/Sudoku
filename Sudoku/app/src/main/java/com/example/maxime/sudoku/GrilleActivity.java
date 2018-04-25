@@ -3,28 +3,35 @@ package com.example.maxime.sudoku;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
+
+import java.util.ArrayList;
 
 /**
  * Created by Maxime on 24/04/2018.
  */
 
 public class GrilleActivity extends Activity {
+
+    ArrayList<Integer> list = new ArrayList<>();
+    String sudoku = "001700509573024106800501002700295018009400305652800007465080071000159004908007053";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grille);
+        final GrilleActivity context = this;
 
-//        Scanner sc = new Scanner(System.in);
+        GridView grille_sudoku = this.findViewById(R.id.grille_final);
+        for (int i =0; i<81;i++){
+            list.add((int)sudoku.charAt(i));
+        }
+        ArrayAdapter<Integer> arrayAdapter
+                = new ArrayAdapter<Integer>(this, android.R.layout.simple_list_item_1 , list);
 
-//        int [][] plateauEntree = new int [8][8];
 
-//        for (int i=0;i<8 ;i++ ) {
-//            String entree = sc.nextLine();
-//            plateauEntree[i]=entree.toCharArray();
-//            for (int j=0;j<81;j++){
-//            plateauEntree[i][j] = i+j;
-//            Log.e("TAG", ""+plateauEntree[i][j]);
-//        }
-//        }
+        grille_sudoku.setAdapter(arrayAdapter);
+
     }
 }

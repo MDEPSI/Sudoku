@@ -23,6 +23,7 @@ public class MainActivity extends Activity {
             public void onClick(View view){
                 Log.e("Message log", "click facile");
                 Intent intent = new Intent(context, ListeGrilleActivity.class); /* contener*/
+                intent.putExtra("level", "facile");
                 context.startActivity(intent);
             }
         });
@@ -33,19 +34,11 @@ public class MainActivity extends Activity {
             public void onClick(View view){
                 Log.e("Message log", "click moyen");
                 Intent intent = new Intent(context, ListeGrilleActivity.class); /* contener*/
+                intent.putExtra("level", "moyen");
                 context.startActivity(intent);
             }
         });
 
-        Button difficile = this.findViewById(R.id.difficile);
-        difficile.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Log.e("Message log", "click difficile");
-                Intent intent = new Intent(context, ListeGrilleActivity.class); /* contener*/
-                context.startActivity(intent);
-            }
-        });
 
     }
 
