@@ -26,7 +26,7 @@ public class GrilleView extends View implements View.OnTouchListener {
 
     ArrayList<Integer> list = new ArrayList<>();
     StringBuilder sudoku = new StringBuilder("001700509573024106800501002700295018009400305652800007465080071000159004908007053");
-    StringBuilder tab_base = new StringBuilder("001700509573024106800501002700295018009400305652800007465080071000159004908007053");
+    StringBuilder tab_base = new StringBuilder(sudoku);
     int [] tab_sudoku = null;
     int screenwidth = Resources.getSystem().getDisplayMetrics().widthPixels;
     int screenheight = Resources.getSystem().getDisplayMetrics().heightPixels;
@@ -99,7 +99,7 @@ public class GrilleView extends View implements View.OnTouchListener {
                 case MotionEvent.ACTION_MOVE:
                     break;
                 case MotionEvent.ACTION_UP:
-
+                if (y<1050){
                     value_y = y/block;
                     value_x = x/block;
                     //                maj du string
@@ -107,16 +107,28 @@ public class GrilleView extends View implements View.OnTouchListener {
                     if (tab_base.charAt(value_x+value_y*9) == '0'){
                         boolean valid = true;
                         for (int i = 0; i<9; i++){
+                            int col = value_x+1;
+                            int row = value_y+1;
                             Log.e("CHAR AT", " num0: "+number);
-//                            Log.e("LOG", ""+i+" "+tab_base.charAt(i+value_y*9) +" "+tab_base.charAt(value_x+i*9)+" num: "+(int)number);
+                            Log.e("LOG", ""+i+" "+value_x+" "+value_y);
                             /**condition lignes colonnes */
-                            if ((tab_base.charAt(i+value_y*9) == number || tab_base.charAt(value_x+i*9) == number)){
-                                    valid = false;
+                            if ((sudoku.charAt(i+value_y*9) == number || sudoku.charAt(value_x+i*9) == number)){
+                                valid = false;
+                            }
+
+                            if ((col%9 ==1 || col%9==2 || col%9==3)&&(row%9 ==1 || row%9==2 || row%9==3)){
+                                for (int j = 0; j<3; j++){
+                                    if ((sudoku.charAt(j+value_y*9) == number || sudoku.charAt(value_x+j*9) == number)){
+                                        valid = false;
+                                    }
+                                }
+
                             }
                             if (number == '0'){
                                 valid = true;
                             }
                         }
+
                         if (valid != false){
                             sudoku.setCharAt(value_x+value_y*9,number);
                         }
@@ -127,6 +139,8 @@ public class GrilleView extends View implements View.OnTouchListener {
 //                            }
 //                        }
                     }
+
+                }
 
                     break;
             }

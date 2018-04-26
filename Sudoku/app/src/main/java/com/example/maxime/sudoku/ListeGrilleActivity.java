@@ -32,7 +32,8 @@ public class ListeGrilleActivity extends Activity {
             "Moyen 17", "Moyen 18", "Moyen 19", "Moyen 20"
     };
 
-    private int[] tab_rand = new int[10] ;
+    private int[] tab_rand_facile = new int[10] ;
+    private int[] tab_rand_moyen = new int[10] ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,12 +46,12 @@ public class ListeGrilleActivity extends Activity {
         for (int i =0; i<grilles_faciles.length; i++) {
             int r = new Random().nextInt(101);
             grilles_faciles[i] = grilles_faciles[i]+" - "+r+"%";
-            tab_rand[i]=r;
+            tab_rand_facile[i]=r;
         }
         for (int i =0; i<grilles_moyen.length; i++) {
             int r = new Random().nextInt(101);
             grilles_moyen[i] = grilles_moyen[i]+" - "+r+"%";
-            tab_rand[i]=r;
+            tab_rand_moyen[i]=r;
         }
 
 
@@ -65,7 +66,7 @@ public class ListeGrilleActivity extends Activity {
 
 //                    for (int i = 0;i<tab_rand.length; i++){
 //                        Log.e("tab",""+tab_rand[i]+" "+position);
-                        if (tab_rand[position]<50){
+                        if (tab_rand_facile[position]<50){
                             tv.setTextColor(Color.RED);
                         } else {
                             tv.setTextColor(Color.GREEN);
@@ -88,7 +89,7 @@ public class ListeGrilleActivity extends Activity {
 
 //                    for (int i = 0;i<tab_rand.length; i++){
 //                        Log.e("tab",""+tab_rand[i]+" "+position);
-                    if (tab_rand[position]<50){
+                    if (tab_rand_moyen[position]<50){
                         tv.setTextColor(Color.RED);
                     } else {
                         tv.setTextColor(Color.GREEN);
