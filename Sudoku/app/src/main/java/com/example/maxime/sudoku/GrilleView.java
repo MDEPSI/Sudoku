@@ -103,9 +103,31 @@ public class GrilleView extends View implements View.OnTouchListener {
                     value_y = y/block;
                     value_x = x/block;
                     //                maj du string
-                    Log.e("CHAR AT", "x: "+(x/block+1)+" y: "+(y/block+1)+" num: "+number+" vx: "+value_x+" vy: "+value_y);
-                    if (tab_base.charAt(value_x+value_y*9) == '0')
-                        sudoku.setCharAt(value_x+value_y*9,number);
+                    Log.e("CHAR AT", " num: "+number);
+                    if (tab_base.charAt(value_x+value_y*9) == '0'){
+                        boolean valid = true;
+                        for (int i = 0; i<9; i++){
+                            Log.e("CHAR AT", " num0: "+number);
+//                            Log.e("LOG", ""+i+" "+tab_base.charAt(i+value_y*9) +" "+tab_base.charAt(value_x+i*9)+" num: "+(int)number);
+                            /**condition lignes colonnes */
+                            if ((tab_base.charAt(i+value_y*9) == number || tab_base.charAt(value_x+i*9) == number)){
+                                    valid = false;
+                            }
+                            if (number == '0'){
+                                valid = true;
+                            }
+                        }
+                        if (valid != false){
+                            sudoku.setCharAt(value_x+value_y*9,number);
+                        }
+
+//                        for (int j = 0; j<9; j++){
+//                            if (tab_base.charAt(value_x+j*9) != number){
+//                                sudoku.setCharAt(value_x+value_y*9,number);
+//                            }
+//                        }
+                    }
+
                     break;
             }
 

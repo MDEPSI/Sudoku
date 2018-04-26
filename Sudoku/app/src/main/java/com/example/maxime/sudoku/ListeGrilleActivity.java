@@ -50,7 +50,7 @@ public class ListeGrilleActivity extends Activity {
         for (int i =0; i<grilles_moyen.length; i++) {
             int r = new Random().nextInt(101);
             grilles_moyen[i] = grilles_moyen[i]+" - "+r+"%";
-//            grilles_moyen[i].setTextColor(RED)
+            tab_rand[i]=r;
         }
 
 
@@ -79,7 +79,25 @@ public class ListeGrilleActivity extends Activity {
             list.setAdapter(adapter);
         } else if (level.get("level").equals("moyen")) {
             final ArrayAdapter<String> adapter = new ArrayAdapter<String>(ListeGrilleActivity.this,
-                    android.R.layout.simple_list_item_1, grilles_moyen);
+                    android.R.layout.simple_list_item_1, grilles_moyen){
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent){
+                    View view = super.getView(position, convertView, parent);
+
+                    TextView tv = (TextView) view.findViewById(android.R.id.text1);
+
+//                    for (int i = 0;i<tab_rand.length; i++){
+//                        Log.e("tab",""+tab_rand[i]+" "+position);
+                    if (tab_rand[position]<50){
+                        tv.setTextColor(Color.RED);
+                    } else {
+                        tv.setTextColor(Color.GREEN);
+                    }
+//                    }
+
+                    return view;
+                }
+            };
             list.setAdapter(adapter);
         }
 
