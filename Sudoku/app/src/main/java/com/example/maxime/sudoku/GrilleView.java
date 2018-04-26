@@ -26,6 +26,8 @@ public class GrilleView extends View implements View.OnTouchListener {
 
     ArrayList<Integer> list = new ArrayList<>();
     StringBuilder sudoku = new StringBuilder("001700509573024106800501002700295018009400305652800007465080071000159004908007053");
+    StringBuilder tab_base = new StringBuilder("001700509573024106800501002700295018009400305652800007465080071000159004908007053");
+    int [] tab_sudoku = null;
     int screenwidth = Resources.getSystem().getDisplayMetrics().widthPixels;
     int screenheight = Resources.getSystem().getDisplayMetrics().heightPixels;
     int block = screenwidth/9;
@@ -102,7 +104,8 @@ public class GrilleView extends View implements View.OnTouchListener {
                     value_x = x/block;
                     //                maj du string
                     Log.e("CHAR AT", "x: "+(x/block+1)+" y: "+(y/block+1)+" num: "+number+" vx: "+value_x+" vy: "+value_y);
-                    sudoku.setCharAt(value_x+value_y*9,number);
+                    if (tab_base.charAt(value_x+value_y*9) == '0')
+                        sudoku.setCharAt(value_x+value_y*9,number);
                     break;
             }
 

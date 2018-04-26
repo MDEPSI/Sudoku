@@ -2,9 +2,11 @@ package com.example.maxime.sudoku;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,6 +32,7 @@ public class ListeGrilleActivity extends Activity {
             "Moyen 17", "Moyen 18", "Moyen 19", "Moyen 20"
     };
 
+    private int[] tab_rand = new int[10] ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,15 +45,37 @@ public class ListeGrilleActivity extends Activity {
         for (int i =0; i<grilles_faciles.length; i++) {
             int r = new Random().nextInt(101);
             grilles_faciles[i] = grilles_faciles[i]+" - "+r+"%";
+            tab_rand[i]=r;
         }
         for (int i =0; i<grilles_moyen.length; i++) {
             int r = new Random().nextInt(101);
             grilles_moyen[i] = grilles_moyen[i]+" - "+r+"%";
+//            grilles_moyen[i].setTextColor(RED)
         }
 
+
         if (level.get("level").equals("facile")){
-            final ArrayAdapter<String> adapter = new ArrayAdapter<String>(ListeGrilleActivity.this,
-                    android.R.layout.simple_list_item_1, grilles_faciles);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(ListeGrilleActivity.this,
+                    android.R.layout.simple_list_item_1, grilles_faciles){
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent){
+                    View view = super.getView(position, convertView, parent);
+
+                    TextView tv = (TextView) view.findViewById(android.R.id.text1);
+
+//                    for (int i = 0;i<tab_rand.length; i++){
+//                        Log.e("tab",""+tab_rand[i]+" "+position);
+                        if (tab_rand[position]<50){
+                            tv.setTextColor(Color.RED);
+                        } else {
+                            tv.setTextColor(Color.GREEN);
+                        }
+//                    }
+
+                    return view;
+                }
+            };
+            adapter.getView(1,null,null).setBackgroundColor(Color.RED);
             list.setAdapter(adapter);
         } else if (level.get("level").equals("moyen")) {
             final ArrayAdapter<String> adapter = new ArrayAdapter<String>(ListeGrilleActivity.this,
